@@ -13,7 +13,7 @@ router.get('/', ASYNC(async (req, res) => {
 
   let depthDefault = 200
   if(req.query.depth !== '0' && _.trim(req.query.depth)) {
-    depthDefault = parseInt(req.query.depth)
+    depthDefault = parseInt(req.query.depth / 2)
   }
 
   const [tokenA, tokenB] = req.query.ticker_id.split('_')

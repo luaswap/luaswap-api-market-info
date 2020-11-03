@@ -6,14 +6,6 @@ const config = require('config')
 const clientUrl = config.get('thegraph.client')
 const blockClientUrl = config.get('thegraph.blockClient')
 
-function get24HoursAgo() {
-    const SECOND = 1000
-    const MINUTE = 60 * SECOND
-    const HOUR = 60 * MINUTE
-    const DAY = 24 * HOUR
-    return Math.floor((Date.now() - DAY) / 1000)
-}
-
 /**
  * Returns the block corresponding to a given epoch timestamp (seconds)
  * @param timestamp epoch timestamp in seconds
@@ -40,7 +32,7 @@ const getPairs = async() => {
     let result = await axios.post(clientUrl, {
         query: `
         {
-            pairs(orderBy: createdAtTimestamp, orderDirection: asc) {
+            pairs(orderBy: reserveUSD, orderDirection: desc) {
                 id,
                 token0 {
                     id,
@@ -69,7 +61,7 @@ const getTickers = async() => {
     let resultPairData = await axios.post(clientUrl, {
         query: `
         {
-            pairs(orderBy: createdAtTimestamp, orderDirection: asc) {
+            pairs(orderBy: reserveUSD, orderDirection: desc) {
                 id,
                 token0 {
                     id,
