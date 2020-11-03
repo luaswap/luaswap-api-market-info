@@ -3,7 +3,7 @@
 All LuaSwap pairs consist of two different tokens. ETH is not a native currency in Luaswap, and is represented
 only by WETH in the pairs. 
 
-The canonical WETH address used by the Uniswap interface is `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`. 
+The canonical WETH address used by the Luaswap interface is `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`. 
 
 ## [`/api/coingekko/pairs`](https://api.luaswap.org/api/coingekko/pairs)
 
