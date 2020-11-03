@@ -64,7 +64,7 @@ Return data for 24-hour pricing and volume information on each market pair avail
 
 Return data for order book information
 
-### URL Parameters
+### Request Parameters
 
 - `ticker_id`: (Required) The asset ids of two ERC20 tokens, joined by an underscore, e.g. `0x..._0x...`. The first token address is considered the base in the response.
 
@@ -109,7 +109,7 @@ Return data for order book information
 
 Return data on historical completed trades for a given market pair
 
-### URL Parameters
+### Request Parameters
 
 - `ticker_id`: (Required) The asset ids of two ERC20 tokens, joined by an underscore, e.g. `0x..._0x...`. The first token address is considered the base in the response.
 
