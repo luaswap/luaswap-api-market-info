@@ -57,7 +57,7 @@ module.exports = function computeBidsAsks(
       quoteReserves
     )
     const { amountOut } = getAmountOut(increment, baseReservesBefore, quoteReservesBefore)
-    return [increment.toString(), amountOut.dividedBy(increment).toString()]
+    return [amountOut.dividedBy(increment).toString(), increment.toString()]
   })
 
   const asks = baseAmounts.map((sellBaseAmount) => {
@@ -67,7 +67,7 @@ module.exports = function computeBidsAsks(
       baseReserves
     )
     const { amountIn } = getAmountIn(increment, baseReservesBefore, quoteReservesBefore)
-    return [increment.toString(), amountIn.dividedBy(increment).toString()]
+    return [amountIn.dividedBy(increment).toString(), increment.toString()]
   })
 
   return {

@@ -183,7 +183,7 @@ const getSwaps = async(tokenA, tokenB, type, limit = 50) => {
     if(type == 'buy') {
         // aOut && bIn && !aIn && !bOut
         conditionType += ' , amount0Out_gt: 0, amount1In_gt: 0, amount0In: 0, amount1Out: 0 '
-    } else {
+    } else if(type == 'sell') {
         // !aOut && !bIn && aIn && bOut
         conditionType += ' , amount0Out: 0, amount1In: 0, amount0In_gt: 0, amount1Out_gt: 0 '
     }
