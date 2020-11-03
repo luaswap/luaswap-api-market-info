@@ -45,9 +45,9 @@ module.exports = function(error, req, res, next) {
       stack: error.stack
     })
 
-    return res.status(500).json({
-      status: 500,
-      message: 'Server Internal Error.'
+    return res.status(err.status).json({
+      status: err.status,
+      message: err.message
     })
   }
   return next()
