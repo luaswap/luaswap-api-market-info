@@ -1,0 +1,7 @@
+{
+  "thegraph": {
+    "client": "THEGRAPH_CLIENT",
+    "blockClient": "THEGRAPH_BLOCK_CLIENT"
+  },
+  "port": "PORT"
+}

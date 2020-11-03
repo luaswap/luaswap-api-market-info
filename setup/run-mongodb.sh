@@ -1,0 +1,1 @@
+docker run -d -p 27017:27017 -v /data/mongodb:/data/db --name mongodb mongo:4.0.4

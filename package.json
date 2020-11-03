@@ -1,0 +1,32 @@
+{
+  "name": "luaswap-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate:v2": "graphql-codegen --config api/apollo/codegen.yml",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "npm run nodemon",
+    "nodemon": "./node_modules/.bin/nodemon index.js"
+  },
+  "author": "phucngh",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bignumber.js": "^9.0.1",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "config": "^3.2.4",
+    "cross-fetch": "^3.0.6",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.1.3",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
