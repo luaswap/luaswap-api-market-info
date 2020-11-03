@@ -23,8 +23,8 @@ router.get('/', ASYNC(async (req, res) => {
 
   const [tokenA, tokenB] = req.query.ticker_id.split('_')
   let swaps =  await getSwaps(tokenA, tokenB, req.query.type, limitDefault)
-  let dataResCoinGekko = {}
-  dataResCoinGekko[req.query.type] = _.map(swaps, swap => {
+  let dataResCoingecko = {}
+  dataResCoingecko[req.query.type] = _.map(swaps, swap => {
     const aOut = swap.amount0Out !== '0'
     const bOut = swap.amount1Out !== '0'
     const baseAmount = aOut ? swap.amount0Out : swap.amount0In
@@ -39,7 +39,7 @@ router.get('/', ASYNC(async (req, res) => {
     }
 
   })
-  res.json(dataResCoinGekko)
+  res.json(dataResCoingecko)
 }))
 
 module.exports = router

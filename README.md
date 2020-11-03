@@ -10,7 +10,7 @@ LuaSwap Subgraph: https://github.com/tomochain/luaswap-subgraph
 
 ## Api Documentation
 
-The documentation of the `/coingekko/` endpoints is [here](./api/coingekko/api.md).
+The documentation of the `/coingecko/` endpoints is [here](./api/coingecko/api.md).
 
 The documentation of the `/coinmarketcap/` endpoints is coming soon.
 

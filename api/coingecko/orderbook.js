@@ -18,11 +18,11 @@ router.get('/', ASYNC(async (req, res) => {
 
   const [tokenA, tokenB] = req.query.ticker_id.split('_')
   let orderbook =  await getOrderBook(tokenA, tokenB, depthDefault)
-  let dataResCoinGekko = {
+  let dataResCoingecko = {
     "ticker_id": req.query.ticker_id,
     ...orderbook
   }
-  res.json(dataResCoinGekko)
+  res.json(dataResCoingecko)
 }))
 
 module.exports = router

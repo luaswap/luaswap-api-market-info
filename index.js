@@ -29,7 +29,7 @@ const limiter = rateLimit({
   }
 })
 app.use('/api/', limiter)
-app.use('/api/coingekko', require('./api/coingekko'))
+app.use('/api/coingecko', require('./api/coingecko'))
 app.use('/api', require('./middlewares/error'))
 // End setting api
 

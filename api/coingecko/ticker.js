@@ -8,7 +8,7 @@ const {
 
 router.get('/', ASYNC(async (req, res) => {
   let tickers = await getTickers()
-  let dataResCoinGekko =  _.map(tickers, ticker => {
+  let dataResCoingecko =  _.map(tickers, ticker => {
     return {
       "ticker_id": ticker.token0.id + '_' + ticker.token1.id,
       "base_currency": ticker.token0.symbol,
@@ -23,7 +23,7 @@ router.get('/', ASYNC(async (req, res) => {
     }
   })
 
-  res.json(dataResCoinGekko)
+  res.json(dataResCoingecko)
 }))
 
 module.exports = router

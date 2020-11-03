@@ -1,17 +1,17 @@
-# V2 Endpoints
+# Luaswap Endpoints
 
 All LuaSwap pairs consist of two different tokens. ETH is not a native currency in Luaswap, and is represented
 only by WETH in the pairs. 
 
 The canonical WETH address used by the Luaswap interface is `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`. 
 
-## [`/api/coingekko/pairs`](https://api.luaswap.org/api/coingekko/pairs)
+## [`/api/coingecko/pairs`](https://api.luaswap.org/api/coingecko/pairs)
 
 Returns data for Luaswap pairs, sorted by reserves. 
 
 ### Request
 
-`GET https://api.luaswap.org/api/coingekko/pairs`
+`GET https://api.luaswap.org/api/coingecko/pairs`
 
 ### Response
 
@@ -32,13 +32,13 @@ Returns data for Luaswap pairs, sorted by reserves.
 ```
 
 
-## [`/api/coingekko/tickers`](https://api.luaswap.org/api/coingekko/tickers)
+## [`/api/coingecko/tickers`](https://api.luaswap.org/api/coingecko/tickers)
 
 Return data for 24-hour pricing and volume information on each market pair available on an LuaSwap
 
 ### Request
 
-`GET https://api.luaswap.org/api/coingekko/tickers`
+`GET https://api.luaswap.org/api/coingecko/tickers`
 
 ### Response
 
@@ -60,7 +60,7 @@ Return data for 24-hour pricing and volume information on each market pair avail
 ]
 ```
 
-## `/api/coingekko/orderbook`
+## `/api/coingecko/orderbook`
 
 Return data for order book information
 
@@ -72,7 +72,7 @@ Return data for order book information
 
 ### Request
 
-`GET https://api.luaswap.org/api/coingekko/orderbook?ticker_id=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2_0xdac17f958d2ee523a2206206994597c13d831ec7&depth=10`
+`GET https://api.luaswap.org/api/coingecko/orderbook?ticker_id=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2_0xdac17f958d2ee523a2206206994597c13d831ec7&depth=10`
 
 ### Response
 
@@ -105,7 +105,7 @@ Return data for order book information
 }
 ```
 
-## `/api/coingekko/historical_trades`
+## `/api/coingecko/historical_trades`
 
 Return data on historical completed trades for a given market pair
 
@@ -119,7 +119,7 @@ Return data on historical completed trades for a given market pair
 
 ### Request
 
-`GET https://api.luaswap.org/api/coingekko/historical_trades?ticker_id=0x05d3606d5c81eb9b7b18530995ec9b29da05faba_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&type=buy&limit=100`
+`GET https://api.luaswap.org/api/coingecko/historical_trades?ticker_id=0x05d3606d5c81eb9b7b18530995ec9b29da05faba_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&type=buy&limit=100`
 
 ### Response
 
