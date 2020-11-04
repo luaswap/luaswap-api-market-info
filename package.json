@@ -13,6 +13,7 @@
   "author": "phucngh",
   "license": "ISC",
   "dependencies": {
+    "@ethersproject/address": "^5.0.5",
     "axios": "^0.19.0",
     "bignumber.js": "^9.0.1",
     "body-parser": "^1.19.0",

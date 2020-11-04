@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 
 // Begin setting api
 app.enable('trust proxy')
-app.use('/api/coingecko', require('./api/coingecko'))
+app.use('/api', require('./api'))
 app.use('/api', require('./middlewares/error'))
 // End setting api
 
