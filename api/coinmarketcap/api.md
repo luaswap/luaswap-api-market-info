@@ -1,148 +1,144 @@
-# Luaswap Endpoints
+# LuaSwap Endpoints
 
-All LuaSwap pairs consist of two different tokens. ETH is not a native currency in Luaswap, and is represented
+All LuaSwap pairs consist of two different tokens. ETH is not a native currency in LuaSwap, and is represented
 only by WETH in the pairs. 
 
-The canonical WETH address used by the Luaswap interface is `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`. 
+The canonical WETH address used by the LuaSwap interface is `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`. 
 
-## [`/api/coingecko/pairs`](https://api.luaswap.org/api/coingecko/pairs)
+## [`/api/coinmarketcap/summary`](https://api.luaswap.org/api/coinmarketcap/summary)
 
-Returns data for Luaswap pairs, sorted by reserves. 
-
-### Request
-
-`GET https://api.luaswap.org/api/coingecko/pairs`
-
-### Response
-
-```json5
-[
-   {
-      "ticker_id":"0x2baecdf43734f22fd5c152db08e3c27233f0c7d2_0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
-      "base":"OM",
-      "target":"LUA"
-   },
-   {
-      "ticker_id":"0x05d3606d5c81eb9b7b18530995ec9b29da05faba_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      "base":"TOMOE",
-      "target":"WETH"
-   },
-   //...
-]
-```
-
-
-## [`/api/coingecko/tickers`](https://api.luaswap.org/api/coingecko/tickers)
-
-Return data for 24-hour pricing and volume information on each market pair available on an LuaSwap
+Returns data for the LuaSwap pairs, sorted by reserves. 
 
 ### Request
 
-`GET https://api.luaswap.org/api/coingecko/tickers`
-
-### Response
-
-```json5
-[
-   {
-      "ticker_id":"0x2260fac5e5542a773aa44fbcfedf7c193bc2c599_0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-      "base_currency":"WBTC",
-      "target_currency":"USDC",
-      "last_price":"13417.87763614859085762055",
-      "base_volume":"1.76943914",
-      "target_volume":"23915.199825",
-      "bid":"13397.13927296341787897059",
-      "ask":"13572.35266158560480293172",
-      "high":"0",
-      "low":"0"
-   },
-   // ...
-]
-```
-
-## `/api/coingecko/orderbook`
-
-Return data for order book information
-
-### Request Parameters
-
-- `ticker_id`: (Required) The asset ids of two ERC20 tokens, joined by an underscore, e.g. `0x..._0x...`. The first token address is considered the base in the response.
-
-- `depth`: (Optional) Orders depth quantity: [0, 100, 200, 500...]. 0 returns full depth. Depth = 100 means 50 for each bid/ask side.
-
-### Request
-
-`GET https://api.luaswap.org/api/coingecko/orderbook?ticker_id=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2_0xdac17f958d2ee523a2206206994597c13d831ec7&depth=10`
+`GET https://api.luaswap.org/api/coinmarketcap/summary`
 
 ### Response
 
 ```json5
 {
-   "ticker_id":"0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2_0xdac17f958d2ee523a2206206994597c13d831ec7",
-   "timestamp":1604378876768,
-   "bids":[
-      [
-         "346.71267840838022675504",
-         "4.66622234950507263645"
-      ],
-      [
-         "293.46256251863515653324",
-         "4.66622234950507263645"
-      ],
-      //...
-   ],
-   "asks":[
-      [
-         "419.2639322538073176393",
-         "4.66622234950507263645"
-      ],
-      [
-         "512.62078285382956284312",
-         "4.66622234950507263645"
-      ],
-      //...
-   ]
+  "0x..._0x...": {                  // the asset ids of the ERC20 tokens (i.e. token addresses), joined by an underscore
+    "last_price": "1.234",          // denominated in token0/token1
+    "base_volume": "123.456",       // last 24h volume denominated in token0
+    "quote_volume": "1234.56"       // last 24h volume denominated in token1
+  },
+  // ...
 }
 ```
 
-## `/api/coingecko/historical_trades`
+## [`/api/coinmarketcap/assets`](https://api.luaswap.org/api/coinmarketcap/assets)
 
-Return data on historical completed trades for a given market pair
-
-### Request Parameters
-
-- `ticker_id`: (Required) The asset ids of two ERC20 tokens, joined by an underscore, e.g. `0x..._0x...`. The first token address is considered the base in the response.
-
-- `type`: (Required) buy or sell
-
-- `limit`: (Optional) Number of historical trades to retrieve from time of query. [0, 200, 500...]. 0 returns full history.
+Returns the tokens in the pairs on LuaSwap, sorted by reserves. 
 
 ### Request
 
-`GET https://api.luaswap.org/api/coingecko/historical_trades?ticker_id=0x05d3606d5c81eb9b7b18530995ec9b29da05faba_0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&type=buy&limit=100`
+`GET https://api.luaswap.org/api/coinmarketcap/assets`
 
 ### Response
 
 ```json5
 {
-   "buy":[
-      {
-         "trade_id":"0x9983de989127bf061b2e0124ef65890e036b5545ad95ef89c10388fd76021f8c-0",
-         "type":"buy",
-         "trade_timestamp":"1604324645",
-         "base_volume":"10000",
-         "target_volume":"14.203116686900176481",
-         "price":"0.00142031166869001765"
-      },
-      {
-         "trade_id":"0x77a74900d6d14608b5a95be4027c133a7a551d79e7129cdac8d57980b62cc845-0",
-         "type":"buy",
-         "trade_timestamp":"1604320729",
-         "base_volume":"10000",
-         "target_volume":"14.047396464423666029",
-         "price":"0.0014047396464423666"
-      },
-      // ...
-   ]
+  // ...,
+  "0x...": {              // the address of the ERC20 token
+    "name": "...",        // not necesssarily included for ERC20 tokens
+    "symbol": "...",      // not necesssarily included for ERC20 tokens
+    "id": "0x...",        // the address of the ERC20 token
+    "maker_fee": "0",     // always 0
+    "taker_fee": "0.004", // always 0.004 i.e. 0.4%
+  },
+  // ...
 }
+```
+
+## [`/api/coinmarketcap/ticker`](https://api.luaswap.org/api/coinmarketcap/ticker)
+
+Returns ticker data for the LuaSwap pairs, sorted by reserves.
+
+### Request
+
+`GET https://api.luaswap.org/api/coinmarketcap/ticker`
+
+### Response
+
+```json5
+{
+  "0x..._0x...": {                    // the asset ids of ETH and ERC20 tokens, joined by an underscore
+    "base_name": "...",             // token0 name
+    "base_symbol": "...",           // token0 symbol
+    "base_id": "0x...",             // token0 address
+    "quote_name": "...",            // token1 name
+    "quote_symbol": "...",          // token1 symbol
+    "quote_id": "0x...",            // token1 address
+    "last_price": "1.234",          // the mid price as token1/token0
+    "base_volume": "123.456",       // denominated in token0
+    "quote_volume": "1234.56"       // denominated in token1
+  },
+  // ...
+}
+```
+
+## `/api/coinmarketcap/orderbook/:marketPair`
+
+Returns simulated orderbook data for the given LuaSwap pair.
+Since LuaSwap has a continuous orderbook, fixed amounts in an interval are chosen for bids and asks, 
+and prices are derived from the LuaSwap formula (accounting for both slippage and fees paid to LPs). 
+
+### Request
+
+`GET https://api.luaswap.org/api/coinmarketcap/orderbook/:marketPair`
+
+### URL Parameters
+
+- `marketPair`: The asset ids of two ERC20 tokens, joined by an underscore, e.g. `0x..._0x...`. The first token address is considered the base in the response.
+
+### Response
+
+```json5
+{
+  "timestamp": 1234567, // UNIX timestamp of the response
+  "bids": [
+    ["12", "1.2"],      // denominated in base token, quote token/base token
+    ["12", "1.1"],      // denominated in base token, quote token/base token
+    // ...
+  ],
+  "asks": [
+    ["12", "1.3"],      // denominated in base token, quote token/base token
+    ["12", "1.4"],      // denominated in base token, quote token/base token
+    // ...
+  ]
+}
+```
+
+## `/api/coinmarketcap/trades/:marketPair`
+
+Returns all swaps in the last 24 hours for the given LuaSwap pair. 
+
+The pair address is the address of the two tokens in either order.
+The first address is considered the base in the response.
+
+Note because LuaSwap supports flash swaps and borrowing of both tokens in a pair, you may wish to exclude these 
+trade types (types `"???"` and `"borrow-both"`).
+
+### URL Parameters
+
+- `pair`: The asset ids of two ERC20 tokens, joined by an underscore, e.g. `0x..._0x...`. The first token address is considered the base in the response.
+
+### Request
+
+`GET https://api.luaswap.org/coinmarketcap/trades/:marketPair`
+
+### Response
+
+```json5
+[
+  {
+    "trade_id": "...",
+    "price": "1.234",           // denominated in quote token/base token
+    "base_volume": "123.456",   // denominated in base token
+    "quote_volume": "1234.56",  // denominated in quote token
+    "trade_timestamp": 1234567, // UNIX timestamp
+    "type": "buy"               // "buy"/"sell"/"borrow-both"/"???" 
+  },
+  // ...
+]
 ```

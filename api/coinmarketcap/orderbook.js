@@ -19,7 +19,7 @@ router.get('/:marketPair', ASYNC(async (req, res) => {
   const [tokenA, tokenB] = req.params.marketPair.split('_')
   let orderbook =  await getOrderBook(tokenA, tokenB, depthDefault)
   let dataResCoingecko = {
-    "timestamp": new Date().getTime(),
+    'timestamp': new Date().getTime(),
     ...orderbook
   }
   res.json(dataResCoingecko)

@@ -18,7 +18,7 @@ const limiterEachPair = rateLimit({
     max: 10, // limit each ticker_id to 10 requests per windowMs
             // if don't have ticker_id param in request, limit by ip
     keyGenerator: function (req /*, res*/) {
-        return (req.ticker_id && _.trim(req.ticker_id)) ? _.trim(req.ticker_id) : req.ip
+        return (req.params.marketPair && _.trim(req.params.marketPair)) ? _.trim(req.params.marketPair) : req.ip
     },
     handler: function (req, res, next) {
         res.status(429).json({
@@ -42,5 +42,8 @@ const limiterEachPairByIp = rateLimit({
 router.use('/summary', limiterMarket, require('./summary'))
 router.use('/assets', limiterMarket, require('./asset'))
 router.use('/ticker', limiterMarket, require('./ticker'))
-router.use('/orderbook', limiterMarket, require('./orderbook'))
+router.use('/orderbook', limiterEachPair, require('./orderbook'))
+router.use('/orderbook', limiterEachPairByIp)
+router.use('/trades', limiterEachPair, require('./trade'))
+router.use('/trades', limiterEachPairByIp)
 module.exports = router

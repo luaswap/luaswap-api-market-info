@@ -164,7 +164,7 @@ const getOrderBook = async(tokenA, tokenB, depth = 200) => {
     }
 }
 
-const getSwaps = async(tokenA, tokenB, type, limit = 50) => {
+const getSwaps = async(tokenA, tokenB) => {
 
     tokenA = _.toLower(tokenA)
     tokenB = _.toLower(tokenB)
@@ -183,31 +183,17 @@ const getSwaps = async(tokenA, tokenB, type, limit = 50) => {
     }
     let pairAddress = pairData.data.data.pairs[0].id
 
-    let conditionType = ''
-    if(type == 'buy') {
-        // aOut && bIn && !aIn && !bOut
-        conditionType += ' , amount0Out_gt: 0, amount1In_gt: 0, amount0In: 0, amount1Out: 0 '
-    } else if(type == 'sell') {
-        // !aOut && !bIn && aIn && bOut
-        conditionType += ' , amount0Out: 0, amount1In: 0, amount0In_gt: 0, amount1Out_gt: 0 '
-    }
-
-    let conditionLimit = ''
-    if(limit > 0) {
-        conditionLimit = `first: ${limit}, `
-    }
-
     // Query swap data
+    let _24HoursAgo = Math.floor((Date.now() - (24 * 60 * 60 * 1000)) / 1000)
     let swapData = await axios.post(clientUrl, {
         query: `
             {
                 swaps(
-                    ${conditionLimit}
                     orderBy: timestamp,
-                    orderDirection: desc,
+                    orderDirection: asc,
                     where: {
+                        timestamp_gte: ${_24HoursAgo},
                         pair:"${pairAddress}"
-                        ${conditionType}
                     }) 
                 {
                     id,

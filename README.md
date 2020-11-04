@@ -1,6 +1,6 @@
 # LuaSwap API
 
-The LuaSwap API is a set of endpoints used by market aggregators (e.g. coinmarketcap.com) to surface 
+The LuaSwap API is a set of endpoints used by market aggregators (e.g. coinmarketcap, coingecko) to surface 
 LuaSwap liquidity and volume information. All information is fetched from the underlying subgraphs.
 
 Prefer the LuaSwap subgraph for any LuaSwap queries whenever possible. The respective subgraphs will always have more
@@ -12,6 +12,6 @@ LuaSwap Subgraph: https://github.com/tomochain/luaswap-subgraph
 
 The documentation of the `/coingecko/` endpoints is [here](./api/coingecko/api.md).
 
-The documentation of the `/coinmarketcap/` endpoints is coming soon.
+The documentation of the `/coinmarketcap/` endpoints is [here](./api/coinmarketcap/api.md).
 
 
