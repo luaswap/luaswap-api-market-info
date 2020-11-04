@@ -137,6 +137,8 @@ const getTickers = async() => {
 
 const getOrderBook = async(tokenA, tokenB, depth = 200) => {
 
+    tokenA = _.toLower(tokenA)
+    tokenB = _.toLower(tokenB)
     // Query pair reserve by tokens
     let pairReseveData = await axios.post(clientUrl, {
         query: `
@@ -164,6 +166,8 @@ const getOrderBook = async(tokenA, tokenB, depth = 200) => {
 
 const getSwaps = async(tokenA, tokenB, type, limit = 50) => {
 
+    tokenA = _.toLower(tokenA)
+    tokenB = _.toLower(tokenB)
     // Query pair from tokens
     let pairData = await axios.post(clientUrl, {
         query: `

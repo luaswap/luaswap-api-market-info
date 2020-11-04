@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const { getAddress } = require("@ethersproject/address")
 const _ = require('lodash')
 
 const {
@@ -45,8 +46,11 @@ router.get('/', ASYNC(async (req, res) => {
             return bidAsk  
           }
     })
+
+    let id0 = getAddress(ticker.token0.id)
+    let id1 = getAddress(ticker.token1.id)
     return {
-      "ticker_id": ticker.token0.id + '_' + ticker.token1.id,
+      "ticker_id": id0 + '_' + id1,
       "base_currency": ticker.token0.symbol,
       "target_currency": ticker.token1.symbol,
       "last_price": ticker.price,
