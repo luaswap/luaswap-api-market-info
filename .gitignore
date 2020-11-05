@@ -2,3 +2,4 @@
 /logs
 /.env
 .vscode/
+test_api.js
