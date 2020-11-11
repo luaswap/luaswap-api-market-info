@@ -11,7 +11,7 @@ router.get('/:marketPair', ASYNC(async (req, res) => {
     throw new Error('Invalid market_pair identifier: must be of format tokenAddress_tokenAddress')
   }
 
-  let depthDefault = 200
+  let depthDefault = 4000
   if(req.query.depth !== '0' && _.trim(req.query.depth)) {
     depthDefault = parseInt(req.query.depth / 2)
   }
