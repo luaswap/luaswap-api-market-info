@@ -17,7 +17,7 @@ router.get('/', ASYNC(async (req, res) => {
   }
 
   const [tokenA, tokenB] = req.query.ticker_id.split('_')
-  let orderbook =  await getOrderBook(tokenA, tokenB, 4000)
+  let orderbook =  await getOrderBook(tokenA, tokenB, 10000)
   let dataResCoingecko = {
     "ticker_id": req.query.ticker_id,
     ...orderbook

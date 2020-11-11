@@ -48,7 +48,10 @@ module.exports = function computeBidsAsks(
 
   // we don't do exactly 100 segments because we do not care about the trade that takes exact out of entire reserves
   const increment = baseReserves.dividedBy(numSegments + 1)
-  const baseAmounts = Array.from({ length: numSegments }, (x, i) => increment.multipliedBy(i))
+  let baseAmounts = Array.from({ length: numSegments }, (x, i) => increment.multipliedBy(i))
+  if(baseAmounts.length > 500) {
+    baseAmounts = baseAmounts.slice(0, 500)
+  }
 
   const bids = baseAmounts.map((buyBaseAmount) => {
     const { reservesInAfter: baseReservesBefore, reservesOutAfter: quoteReservesBefore } = getAmountOut(

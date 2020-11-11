@@ -18,7 +18,7 @@ router.get('/', ASYNC(async (req, res) => {
   let dataResCoingecko =  _.map(tickers, ticker => {
 
     // Calculate best bid, ask price
-    let orderbook = computeBidsAsks(new BigNumber(ticker.reserve0), new BigNumber(ticker.reserve1), 4000)
+    let orderbook = computeBidsAsks(new BigNumber(ticker.reserve0), new BigNumber(ticker.reserve1), 10000)
     let bestBid = orderbook.bids.length > 0 ? orderbook.bids[0][0] : '0'
     let bestAsk = orderbook.asks.length > 0 ? orderbook.asks[0][0] : '0'
 
